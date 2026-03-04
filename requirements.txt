@@ -7,3 +7,11 @@ Pillow
 scikit-image
 python-bidi
 PyYAML
+pandas
+matplotlib
+seaborn
+scikit-learn
+jupyter
+ipykernel
+imbalanced-learn
+streamlit
