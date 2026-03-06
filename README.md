@@ -153,10 +153,10 @@ Interactive Streamlit interface for real-time OCR.
 | Otsu Thresholding | Adaptive binary threshold | Segment text from background |
 | Morphology | 2×2 closing operation | Fill small gaps in text regions |
 
-### Input:   ![alt text](images/1.jpg)
+### Input:   ![](data/1.jpg)
 #
-### Output: ![alt text](images/1.png) Enhanced binary image optimized for OCR
-Extracted Text: ![alt text](images/image.png)
+### Output: ![](data/1.png) Enhanced binary image optimized for OCR
+Extracted Text: ![](data/image.png)
 
 ### 4. ocr_engine.py - Text Recognition
 #### EasyOCR Configuration:
