@@ -1,7 +1,10 @@
 import streamlit as st
 import cv2
-import easyocr
 import numpy as np
+from pre_process import preprocess_image
+from ocr_engine import run_ocr
+from visualisation import draw_boxes
+from text_cleaner import clean_ocr_text
 
 st.title("OCR Text Extraction Tool")
 
@@ -14,11 +17,28 @@ if uploaded_file is not None:
 
     st.image(image, caption="Uploaded Image")
 
-    reader = easyocr.Reader(['en'], gpu=False)
+    original, processed = preprocess_image(image)
 
-    results = reader.readtext(image)
+    st.image(processed, caption="Preprocessed Image")
+
+    results = run_ocr(processed)
+
+    boxed = draw_boxes(original, results)
+
+    st.image(boxed, caption="Detected Text Regions")
 
     st.subheader("Detected Text")
 
+    extracted_text = ""
+
     for bbox, text, prob in results:
-        st.write(f"{text}")
+        extracted_text += text + "\n"
+
+    cleaned_text = clean_ocr_text(extracted_text)
+    st.text(cleaned_text)
+
+    st.download_button(
+        "Download Extracted Text",
+        cleaned_text,
+        file_name="ocr_output.txt"
+    )
